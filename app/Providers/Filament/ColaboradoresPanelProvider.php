@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\filament\Auth\CustomLogin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -19,24 +18,23 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class DashboardAdminPanelProvider extends PanelProvider
+class ColaboradoresPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
-            ->id('dashboardAdmin')
-            ->path('dashboardAdmin')
-            ->login(CustomLogin::class)
+            ->id('colaboradores')
+            ->path('colaboradores')
+            ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Red,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverResources(in: app_path('Filament/Colaboradores/Resources'), for: 'App\\Filament\\Colaboradores\\Resources')
+            ->discoverPages(in: app_path('Filament/Colaboradores/Pages'), for: 'App\\Filament\\Colaboradores\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->discoverWidgets(in: app_path('Filament/Colaboradores/Widgets'), for: 'App\\Filament\\Colaboradores\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
